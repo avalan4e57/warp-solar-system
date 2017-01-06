@@ -10,11 +10,11 @@
 
   <!-- Latest compiled JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles/style.css">
   <!--[if lt IE 9]> 
    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script> 
   <![endif]-->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles/style.css">
   <!--[if lt IE 9]> 
    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script> 
   <![endif]-->
@@ -24,7 +24,7 @@
     <div id="player"></div>
     <div id="main">
       <div id="planet">
-        <img id="planet-img" src="earth.png" alt="planet" onclick="getInfo()">
+        <img id="planet-img" src="img/earth.png" alt="planet" onclick="getInfo()">
       </div>
       <div id="choose-planet">
         <ul class="inner">
@@ -113,7 +113,7 @@
           console.log("to "+destPlanet);
           $("#planet").addClass('animate');
           function temp() {
-            $("#planet-img").attr("src",destPlanet+".png");
+            $("#planet-img").attr("src","img/"+destPlanet+".png");
             $("#planet").removeClass('animate');
           }
           setTimeout(temp,6000);
