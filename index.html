@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <!--[if lt IE 9]> 
+   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script> 
+  <![endif]-->
+  <link rel="stylesheet" href="style.css">
+  <!--[if lt IE 9]> 
+   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script> 
+  <![endif]-->
+  </head>
+  <body>
+    <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+    <div id="player"></div>
+    <div id="main">
+      <div id="planet">
+        <img id="planet-img" src="earth.png" alt="planet" onclick="getInfo()">
+      </div>
+      <div id="choose-planet">
+        <ul class="inner">
+          <li><button id="to-sun" class="btn" onclick="changePlanet(this.id)">Sun</button></li>
+          <li><button id="to-mercury" class="btn" onclick="changePlanet(this.id)">Mercury</button></li>
+          <li><button id="to-venus" class="btn" onclick="changePlanet(this.id)">Venus</button></li>
+          <li><button id="to-earth" class="btn" onclick="changePlanet(this.id)">Earth</button></li>
+          <li><button id="to-mars" class="btn" onclick="changePlanet(this.id)">Mars</button></li>
+        </ul>
+        <ul class="outer">
+          <li><button id="to-jupiter" class="btn right" onclick="changePlanet(this.id)">Jupiter</button></li>
+          <li><button id="to-saturn" class="btn" onclick="changePlanet(this.id)">Saturn</button></li>
+          <li><button id="to-uranus" class="btn" onclick="changePlanet(this.id)">Uranus</button></li>
+          <li><button id="to-neptune" class="btn" onclick="changePlanet(this.id)">Neptune</button></li>
+          <li><button id="to-pluto" class="btn" onclick="changePlanet(this.id)">Pluto</button></li>
+        </ul>
+      </div>
+    </div>
+
+    
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script>
+      var playerDefaults = {autoplay: 0, autohide: 1, modestbranding: 0, rel: 0, showinfo: 0, controls: 0, disablekb: 1, enablejsapi: 0, iv_load_policy: 3};
+
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '100%',
+          width: '100%',
+          videoId: 'uvnk9dcqVbA',
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          },
+          playerVars: playerDefaults
+        });
+      }
+
+      // 4. The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+        // event.target.playVideo();
+      }
+
+      // 5. The API calls this function when the player's state changes.
+      //    The function indicates that when playing a video (state=1),
+      //    the player should play for six seconds and then stop.
+      var done = false;
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING && !done) {
+          setTimeout(stopVideo, 6000);
+          done = true;
+        }
+      }
+      function stopVideo() {
+        player.stopVideo();
+      }
+    </script>
+    <script type="text/javascript">
+      var isWarping = false;
+      function changePlanet(planet) {
+        if (!isWarping) {
+          isWarping = true;
+          var curPlanet = $("#planet-img").attr("src").slice(0,-4);
+          console.log(curPlanet);
+          var destPlanet = planet.slice(3);
+          console.log(destPlanet);
+          if (curPlanet === destPlanet) {
+            console.log("Already here");
+            return;
+          }
+          function toggleVideo() {
+            $("#player").toggle();
+          }
+          setTimeout(toggleVideo,500);
+          setTimeout(toggleVideo,6500);
+          player.playVideo();
+          console.log("to "+destPlanet);
+          $("#planet").addClass('animate');
+          function temp() {
+            $("#planet-img").attr("src",destPlanet+".png");
+            $("#planet").removeClass('animate');
+          }
+          setTimeout(temp,6000);
+          function finishWarp() {
+            player.stopVideo();
+            isWarping = false;
+          }
+          setTimeout(finishWarp, 7000);
+        }
+        
+      }
+
+      function getInfo() {
+        var planet = $("#planet-img").attr("src").slice(0,-4);
+        window.location.href = "https://en.wikipedia.org/wiki/" + planet;
+      }
+    </script>
+  </body>
+</html>

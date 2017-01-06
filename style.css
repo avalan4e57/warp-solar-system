@@ -1,0 +1,106 @@
+body {
+	margin: 0;
+	background-color: black;
+}
+
+#main {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+}
+
+#planet {
+	position: relative;
+  top: 35%;
+  /*transform: translateY(-50%);*/
+  margin: auto;
+	width: 200px;
+	height: 200px;	
+	transform: scale(1);
+	transition: all 2.5s;
+}
+
+#planet.animate {
+	transform: scale(0);
+}
+
+#planet img {
+	width: 200px;
+	height: 200px;
+}
+
+#choose-planet {
+	/*position: absolute;
+	right: 0;
+	top: 0;*/
+}
+
+#choose-planet .outer {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+
+#choose-planet .inner {
+	position: absolute;
+	left: -35px;
+	top: 0;
+}
+
+ul {
+	list-style: none;
+}
+
+#choose-planet button {
+	width: 100px;
+	height: 50px;
+	margin: 10px 25px;
+}
+
+#to-pluto {
+	background-color: #A9A9A9;
+}
+
+#to-neptune {
+	background-color: #00CED1;
+}
+
+#to-uranus {
+	background-color: #0000CD;
+	color: #48D1CC;
+}
+
+#to-saturn {
+	background-color: #FFDAB9;
+}
+
+#to-jupiter {
+	background-color: #CD853F;
+}
+
+#to-mars {
+	background-color: #B22222;
+}
+
+#to-earth {
+	/*background-color: #7CFC00;*/
+	background-color: #1E90FF;
+}
+
+#to-venus {
+	background-color: #FFF8DC;
+}
+
+#to-mercury {
+	background-color: orange;
+}
+
+#to-sun {
+	background-color: #FF4500;
+}
+
+#player {
+	position: fixed;
+	z-index: -99;
+	display: none; 
+}
