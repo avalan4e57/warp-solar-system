@@ -113,7 +113,7 @@
           console.log("to "+destPlanet);
           $("#planet").addClass('animate');
           function temp() {
-            $("#planet-img").attr("src",destPlanet+".png");
+            $("#planet-img").attr("src","img/"+destPlanet+".png");
             $("#planet").removeClass('animate');
           }
           setTimeout(temp,6000);
