@@ -11,12 +11,12 @@
   <!-- Latest compiled JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="styles/style.css">
-  <!--[if lt IE 9]> 
-   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script> 
+  <!--[if lt IE 9]>
+   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
   <link rel="stylesheet" href="styles/style.css">
-  <!--[if lt IE 9]> 
-   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script> 
+  <!--[if lt IE 9]>
+   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
   </head>
   <body>
@@ -45,30 +45,30 @@
     </div>
     <!--Init API of youtube warp video for the project. ***************************
     You can also find here playVideo() and stopVideo() functions used in code below -->
-    <script src="js/initVideoAPI.js"></script> 
+    <script src="js/initVideoAPI.js"></script>
     <!--Main script. All interractive features of the app can be found here-->
-    <script> 
+    <script>
       var isWarping = false;
-      
+
       //Main function. Makes all about interractive warping through Solar System
       function warpTo(planet) {
         if (!isWarping) {
           var destPlanet = planet.slice(3);
           if (!isCurPlanet(destPlanet)) {
             usePlayerForWarp(); //Here the "player" div is toggled to  show up
-            //and a timeout set to show off the "player" after warp jump 
+            //and a timeout set to show off the "player" after warp jump
             //is finished
             startWarp(); //Start the warp video and change warping status
             changePlanet(destPlanet); //Animation of leaving current plannet,
             //then some pause while warp rays are shown on video and finaly
             //animation of approaching destination planet
             //The whole animation is made by css (see styles/style.css)
-            setTimeout(finishWarp, 7000); //Stop the warp video and change 
+            setTimeout(finishWarp, 7000); //Stop the warp video and change
             //warping status
           } else {
-            console.log("Already here"); 
+            console.log("Already here");
           }
-        } 
+        }
       }
 
       function changePlanet(destPlanet) {
@@ -93,7 +93,7 @@
       function finishWarp() {
         stopVideo();
         isWarping = false;
-      }    
+      }
 
       function togglePlayer() {
         $("#player").toggle();
@@ -105,7 +105,7 @@
       }
 
       function getInfo() {
-        var planet = $("#planet-img").attr("src").slice(0,-4);
+        var planet = $("#planet-img").attr("src").split("/")[1].split(".")[0];
         window.location.href = "https://en.wikipedia.org/wiki/" + planet;
       }
     </script>
